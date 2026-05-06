@@ -1,0 +1,137 @@
+---
+interface Props {
+  class?: string;
+  id?: string;
+  variant?: "primary" | "secondary" | "outline" | "link" | "white";
+  href?: string;
+}
+
+const {
+  class: className = "",
+  id,
+  variant = "primary",
+  href,
+  ...rest
+} = Astro.props;
+
+const variantClasses = {
+  primary: "btn-primary",
+  secondary: "btn-secondary",
+  outline: "btn-outline",
+  link: "btn-link",
+  white: "btn-white",
+};
+
+const computedClass = ["btn", className, variantClasses[variant]]
+  .filter(Boolean)
+  .join(" ");
+
+const Tag = href ? "a" : "button";
+---
+
+<Tag id={id} class={computedClass} href={href} {...rest}>
+  <slot />
+</Tag>
+
+<style lang="scss" is:global>
+  @use "scss/helpers" as *;
+
+  @property --color-gradient-start {
+    syntax: "<color>";
+    initial-value: #43a4a4;
+    inherits: false;
+  }
+
+  @property --color-gradient-end {
+    syntax: "<color>";
+    initial-value: #8da3dd;
+    inherits: false;
+  }
+
+  .btn {
+    color: initial;
+    font-size: rem(18);
+    font-weight: 500;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-ease);
+
+    &-primary {
+      width: rem(265);
+      height: rem(54);
+      color: #fff;
+      font-size: rem(16);
+      font-weight: 600;
+      background: linear-gradient(
+        150deg,
+        var(--color-gradient-start),
+        var(--color-gradient-end)
+      );
+      border-radius: rem(15);
+      transition:
+        --color-gradient-start 0.3s ease-in-out,
+        --color-gradient-end 0.3s ease-in-out;
+
+      &:hover {
+        --color-gradient-start: #8da3dd;
+        --color-gradient-end: #43a4a4;
+      }
+    }
+
+    &-secondary {
+      height: rem(60);
+      width: rem(264);
+      color: #fff;
+      background: var(--primary);
+      border-radius: 9999px;
+      gap: rem(14);
+
+      svg {
+        transition: var(--transition-ease);
+      }
+
+      &:hover {
+        color: #fff;
+        background: var(--secondary);
+
+        svg {
+          transform: translateX(rem(5));
+        }
+      }
+
+      @include media("sm") {
+        width: rem(240);
+        height: rem(56);
+        font-size: rem(16);
+        gap: rem(20);
+      }
+    }
+
+    &-white {
+      width: rem(305);
+      height: rem(54);
+      color: var(--primary);
+      font-size: rem(16);
+      font-weight: 600;
+      background: #fff;
+      border-radius: rem(15);
+    }
+
+    &-outline {
+      width: rem(265);
+      height: rem(54);
+      color: var(--primary);
+      font-size: rem(16);
+      font-weight: 600;
+      border-radius: rem(15);
+      border: rem(2) solid var(--primary);
+
+      &:hover {
+        background: var(--primary);
+        color: #fff;
+      }
+    }
+  }
+</style>

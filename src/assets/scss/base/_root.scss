@@ -1,0 +1,48 @@
+@use '../helpers' as *;
+
+:root {
+  --primary: #c86834;
+  --primary-hover: #c5794c;
+  --secondary: #ffd892;
+  --background: #051704;
+  --text-color: #fff;
+  --text-dark: #161e28;
+  --gray: #686868;
+  --font-primary: 'TT Interfaces', sans-serif;
+  --font-secondary: 'Suisse Intl', sans-serif;
+  --transition-ease: 0.3s ease;
+  --transition-bezier: 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  --content-width: #{rem(1356)};
+  --content-padding: #{rem(25)};
+}
+
+@include media('xl') {
+  :root {
+    --content-width: #{rem(1024)};
+    --content-padding: #{rem(20)};
+  }
+}
+@include media('lg') {
+  :root {
+    --content-width: #{rem(768)};
+  }
+}
+@include media('md') {
+  :root {
+    --content-width: #{rem(640)};
+  }
+}
+@include media('sm') {
+  :root {
+    --content-width: #{rem(475)};
+    --content-padding: #{rem(16)};
+  }
+}
+
+.container {
+  margin: 0 auto;
+  padding-left: var(--content-padding);
+  padding-right: var(--content-padding);
+  width: 100%;
+  max-width: calc(var(--content-width) + var(--content-padding) * 2);
+}

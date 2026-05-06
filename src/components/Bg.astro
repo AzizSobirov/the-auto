@@ -1,0 +1,209 @@
+---
+
+---
+
+<div class="backgrounds">
+  {
+    Array.from({ length: 11 }).map((item, index) => (
+      <div class={`backgrounds-item backgrounds--${index + 1}`} />
+    ))
+  }
+</div>
+
+<style lang="scss" is:global>
+  @use 'scss/helpers' as *;
+
+  .backgrounds {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+
+    &-item {
+      --scale: 1;
+      --size: 200px;
+      --blur: 220px;
+      --color: #31354b;
+      --top: 0;
+      --left: 0;
+      position: absolute;
+      top: var(--top);
+      left: 50%;
+      transform: translateX(calc(-50% + var(--left) * var(--scale)));
+      width: calc(var(--size) * var(--scale));
+      height: calc(var(--size) * var(--scale));
+      border-radius: 50%;
+      background: var(--color);
+      filter: blur(calc(var(--blur) * var(--scale)));
+
+      @include media('xl') {
+        --scale: 0.8;
+      }
+      @include media('lg') {
+        --scale: 0.7;
+      }
+      @include media('md') {
+        --scale: 0.6;
+      }
+      @include media('sm') {
+        --scale: 0.5;
+      }
+      @include media('xs') {
+        --scale: 0.4;
+      }
+    }
+
+    /* @include media('md') {
+      &-item:nth-child(n + 7) {
+        display: none;
+      }
+    } */
+
+    &--1 {
+      --top: 30px;
+      --left: 800px;
+      --size: 230px;
+      --blur: 50px;
+      --color: #31354b;
+
+      @include media('md') {
+        --left: 300px;
+        --top: 20px;
+      }
+    }
+
+    &--2 {
+      --top: 500px;
+      --left: -650px;
+      --size: 230px;
+      --blur: 50px;
+      --color: #4b4831;
+
+      @include media('md') {
+        --left: -140px;
+        --top: 400px;
+      }
+    }
+
+    &--3 {
+      --top: 600px;
+      --left: 700px;
+      --size: 400px;
+      --blur: 100px;
+      --color: #4c4c4c;
+
+      @include media('md') {
+        --left: 160px;
+        --top: 550px;
+      }
+    }
+
+    &--4 {
+      --top: 1200px;
+      --left: -300px;
+      --size: 400px;
+      --blur: 90px;
+      --color: #4b3431;
+
+      @include media('md') {
+        --left: -120px;
+        --top: 1000px;
+      }
+    }
+
+    &--5 {
+      --top: 1900px;
+      --left: 700px;
+      --size: 400px;
+      --blur: 80px;
+      --color: #4b4831;
+
+      @include media('md') {
+        --left: 150px;
+        --top: 1500px;
+      }
+    }
+
+    &--6 {
+      --top: 2200px;
+      --left: -600px;
+      --size: 400px;
+      --blur: 90px;
+      --color: #4b3431;
+
+      @include media('md') {
+        --left: -150px;
+        --top: 1800px;
+      }
+    }
+
+    &--7 {
+      --top: 3100px;
+      --left: -50px;
+      --size: 400px;
+      --blur: 80px;
+      --color: #4c4c4c;
+
+      @include media('md') {
+        --left: -50px;
+        --top: 2500px;
+      }
+    }
+
+    &--8 {
+      --top: 3400px;
+      --left: 900px;
+      --size: 300px;
+      --blur: 80px;
+      --color: #31354b;
+
+      @include media('md') {
+        --left: 200px;
+        --top: 3000px;
+      }
+    }
+
+    &--9 {
+      --top: 3700px;
+      --left: 380px;
+      --size: 400px;
+      --blur: 80px;
+      --color: #4b4831;
+
+      @include media('md') {
+        --left: 100px;
+        --top: 3400px;
+      }
+    }
+
+    &--10 {
+      --top: 4150px;
+      --left: -700px;
+      --size: 400px;
+      --blur: 90px;
+      --color: #4b3431;
+
+      @include media('md') {
+        --left: -200px;
+        --top: 3800px;
+      }
+    }
+
+    &--11 {
+      --top: 4850px;
+      --left: 500px;
+      --size: 350px;
+      --blur: 80px;
+      --color: #4b3431;
+
+      @include media('md') {
+        --left: 150px;
+        --top: 4400px;
+      }
+    }
+  }
+</style>

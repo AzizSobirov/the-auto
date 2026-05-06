@@ -1,0 +1,352 @@
+---
+import { Button, Icon, Image } from 'ui'
+---
+
+<div class="modal-overlay">
+  <!-- Callback Modal -->
+  <div class="modal" data-template="callback">
+    <div class="modal__content">
+      <div class="modal__close" data-modal="close">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 6L6 18M6 6L18 18"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </div>
+
+      <div class="modal__header">
+        <div class="modal__title">Запишитесь на консультацию</div>
+        <p class="modal__desc">
+          Оставьте заявку, и наш специалист свяжется с вами в течение 15 минут
+        </p>
+      </div>
+
+      <form class="modal__form the-form">
+        <div class="modal__field">
+          <input type="text" name="name" placeholder="Ваше имя" required />
+        </div>
+        <div class="modal__field">
+          <input
+            type="tel"
+            name="phone"
+            placeholder="+7 (___) ___-__-__"
+            required
+          />
+        </div>
+
+        <Button class="modal__submit">Отправить заявку</Button>
+
+        <div class="modal__privacy">
+          Отправляя заявку, вы соглашаетесь с <br />
+          <a href="#">Политикой обработки персональных данных</a>
+        </div>
+      </form>
+
+      <div class="modal__footer">
+        <div class="modal__footer-text">
+          Или свяжитесь с нами напрямую:
+          <a href="tel:+79112332222" class="modal__footer-phone"
+            >+7 (911) 233-22-22</a
+          >
+        </div>
+
+        <div class="modal__socials">
+          <a href="#" target="_blank" title="Telegram">
+            <Icon src="telegram.svg" />
+          </a>
+          <a href="#" target="_blank" title="VK">
+            <Icon src="vk.svg" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal" data-template="success">
+    <div class="modal__content modal__content--success">
+      <div class="modal__close" data-modal="close">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 6L6 18M6 6L18 18"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </div>
+
+      <div class="modal__success-icon">
+        <svg
+          width="64"
+          height="64"
+          viewBox="0 0 64 64"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle cx="32" cy="32" r="32" fill="#005A87" fill-opacity="0.1"
+          ></circle>
+          <path
+            d="M44 24L28 40L20 32"
+            stroke="#005A87"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </div>
+
+      <div class="modal__header">
+        <div class="modal__title">Спасибо за заявку!</div>
+        <p class="modal__desc">
+          Мы получили ваше сообщение и свяжемся с вами в ближайшее время.
+        </p>
+      </div>
+
+      <Button class="modal__close-btn" data-modal="close">Закрыть</Button>
+    </div>
+  </div>
+</div>
+
+<style lang="scss" is:global>
+  @use 'scss/helpers' as *;
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.show {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .modal {
+    width: 100%;
+    max-width: rem(540);
+    padding: rem(20);
+    display: none;
+    transform: translateY(rem(20));
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.show {
+      display: flex;
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    &__content {
+      position: relative;
+      width: 100%;
+      background: #fff;
+      border-radius: rem(20);
+      padding: rem(32);
+      color: #000;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+      @include media('sm') {
+        padding: rem(32) rem(24);
+      }
+
+      &--success {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    &__close {
+      position: absolute;
+      top: rem(16);
+      right: rem(16);
+      cursor: pointer;
+      color: var(--gray);
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #000;
+      }
+    }
+
+    &__header {
+      margin-bottom: rem(32);
+    }
+
+    &__title {
+      font-size: rem(32);
+      font-weight: 700;
+      margin-bottom: rem(12);
+      line-height: 1.2;
+
+      @include media('sm') {
+        font-size: rem(24);
+      }
+    }
+
+    &__desc {
+      font-size: rem(16);
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: rem(16);
+      margin-bottom: rem(32);
+    }
+
+    &__field {
+      input {
+        width: 100%;
+        height: rem(56);
+        padding: 0 rem(20);
+        background: #f5f5f5;
+        border: 1px solid transparent;
+        border-radius: rem(12);
+        font-size: rem(16);
+        transition: all 0.3s ease;
+
+        &:focus {
+          background: #fff;
+          border-color: var(--primary);
+          outline: none;
+        }
+      }
+    }
+
+    &__submit {
+      width: 100% !important;
+      height: rem(60) !important;
+      background: var(--primary);
+      font-weight: 700;
+      font-size: rem(16);
+      border-radius: 9999px !important;
+      color: #fff;
+      transition: var(--transition-ease);
+      margin-top: rem(8);
+
+      &:hover {
+        background: var(--primary-hover);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+    }
+
+    &__privacy {
+      font-size: rem(12);
+      color: var(--gray);
+      text-align: center;
+      line-height: 1.4;
+
+      a {
+        color: var(--primary);
+        text-decoration: underline;
+      }
+    }
+
+    &__footer {
+      border-top: 1px solid #eee;
+      padding-top: rem(24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @include media('sm') {
+        flex-direction: column;
+        gap: rem(20);
+        text-align: center;
+      }
+
+      &-text {
+        font-size: rem(14);
+        color: var(--gray);
+      }
+
+      &-phone {
+        display: block;
+        font-size: rem(18);
+        font-weight: 600;
+        color: #000;
+        text-decoration: none;
+        margin-top: rem(4);
+      }
+    }
+
+    &__socials {
+      display: flex;
+      gap: rem(12);
+
+      a {
+        --icon-size: #{rem(24)};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: translateY(rem(-2));
+        }
+      }
+    }
+
+    &__success-icon {
+      margin-bottom: rem(24);
+    }
+
+    &__close-btn {
+      width: auto !important;
+      min-width: rem(160);
+      background: var(--primary);
+      font-weight: 700;
+      font-size: rem(14);
+      border-radius: 9999px !important;
+      color: #fff;
+      transition: var(--transition-ease);
+
+      &:hover {
+        background: var(--primary-hover);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+</style>
