@@ -125,6 +125,25 @@ let stepsSwiper = new Swiper('.steps .swiper', {
   },
 })
 
+let reviewsSwiper = new Swiper('.reviews__swiper .swiper', {
+  slidesPerView: 'auto',
+  spaceBetween: 16,
+  navigation: {
+    nextEl: '.reviews__swiper .btn-next',
+    prevEl: '.reviews__swiper .btn-prev',
+  },
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 15,
+    },
+    1280: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+  },
+})
+
 // Initialize the fancybox
 const fancyboxTriggers = Array.from(
   document.querySelectorAll('[data-fancybox]'),
