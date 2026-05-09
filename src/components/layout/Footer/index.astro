@@ -3,13 +3,152 @@ import { Image } from 'ui'
 ---
 
 <footer class="footer">
-  <div class="container"></div>
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__info">
+        <a href="/" class="footer__logo">
+          <Image src="logo.svg" alt="logo" />
+        </a>
+        <div class="footer__copyright">
+          © <span id="current-year"></span>. Все права защищены
+        </div>
+      </div>
+
+      <div class="footer__contacts">
+        <div class="footer__address">г. Москва, ул. Такая-то, д. 1</div>
+        <a href="tel:+79999999999" class="footer__phone"> 8 (999) 999-99-99 </a>
+        <div class="footer__hours">Ежедневно с 10:00 - 20:00</div>
+      </div>
+
+      <div class="footer__map">
+        <iframe
+          src="https://yandex.uz/map-widget/v1/?ll=37.645254%2C55.746733&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzE2NjM5MxIa0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAiCg14eBZCFfUFX0I%2C&z=11.61"
+          allowfullscreen="true"></iframe>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <style lang="scss" is:global>
   @use 'scss/helpers' as *;
 
   .footer {
-    position: relative;
+    padding: rem(80) 0 rem(60);
+
+    @include media('lg') {
+      padding: rem(40) 0;
+    }
+
+    &__inner {
+      display: grid;
+      grid-template-columns: rem(300) 1fr rem(480);
+      align-items: center;
+      gap: rem(40);
+
+      @include media('xl') {
+        grid-template-columns: rem(250) 1fr rem(400);
+      }
+
+      @include media('lg') {
+        grid-template-columns: 1fr 1fr;
+        gap: rem(32);
+      }
+
+      @include media('md') {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      gap: rem(24);
+
+      @include media('md') {
+        align-items: center;
+      }
+    }
+
+    &__logo {
+      img {
+        height: rem(80);
+        width: auto;
+
+        @include media('xl') {
+          height: rem(60);
+        }
+      }
+    }
+
+    &__copyright {
+      font-size: rem(14);
+      opacity: 0.5;
+      font-weight: 300;
+    }
+
+    &__contacts {
+      display: flex;
+      flex-direction: column;
+      gap: rem(12);
+
+      @include media('md') {
+        order: 1;
+      }
+    }
+
+    &__address {
+      font-size: rem(18);
+      opacity: 0.7;
+      font-weight: 300;
+    }
+
+    &__phone {
+      font-size: rem(32);
+      font-weight: 700;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: var(--primary);
+      }
+
+      @include media('xl') {
+        font-size: rem(24);
+      }
+    }
+
+    &__hours {
+      font-size: rem(18);
+      opacity: 0.5;
+      font-weight: 300;
+    }
+
+    &__map {
+      width: 100%;
+      height: rem(240);
+      border-radius: rem(30);
+      overflow: hidden;
+      position: relative;
+
+      @include media('lg') {
+        grid-column: span 2;
+        height: rem(300);
+      }
+
+      @include media('md') {
+        grid-column: span 1;
+        height: rem(200);
+        order: -1;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: none;
+        border-radius: inherit;
+        filter: invert(1) grayscale(1);
+      }
+    }
   }
 </style>

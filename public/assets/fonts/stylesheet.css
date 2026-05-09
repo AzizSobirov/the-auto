@@ -31,6 +31,14 @@
 }
 
 @font-face {
+  font-family: 'Suisse Intl';
+  src: url('/assets/fonts/SuisseIntl-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'TT Interfaces';
   src: url('/assets/fonts/TTInterfaces-Thin.woff2') format('woff2');
   font-weight: 100;

@@ -1,12 +1,17 @@
 ---
-import { Section, H2, H3, P, Image, Icon, Button } from 'ui'
+import { Section, H2, H3, P, Image, BgImg, Icon, Button } from 'ui'
 ---
 
 <!-- Hero -->
 <Section name="hero">
-  <H2>
-    hello <strong>World</strong>
-  </H2>
+  <Fragment #header-content>
+    <BgImg src="/hero/bg.png" />
+  </Fragment>
+
+  <div class="wrapper group">
+    <div class="hero__subtitle">ВАШ <strong>ПРЕмиальный</strong> детейлинг</div>
+    <div class="hero__title">DETAILING STUDIO</div>
+  </div>
 </Section>
 
 <style lang="scss" is:global>
@@ -14,6 +19,36 @@ import { Section, H2, H3, P, Image, Icon, Button } from 'ui'
 
   .hero {
     position: relative;
-    min-height: 300vh;
+
+    .wrapper {
+      padding-top: rem(320);
+      gap: rem(12);
+
+      @include media('sm') {
+        padding-top: rem(200);
+      }
+    }
+
+    &__subtitle {
+      font-size: clamp(1.5rem, 1.3163rem + 0.8163vw, 2rem);
+      text-transform: uppercase;
+      font-weight: 300;
+      font-family: var(--font-secondary);
+
+      strong,
+      b {
+        font-weight: 700;
+        color: var(--primary);
+      }
+    }
+
+    &__title {
+      text-indent: -0.05em;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: clamp(3.25rem, 1.2985rem + 8.6735vw, 8.5625rem);
+      font-family: var(--font-secondary);
+      line-height: 1;
+    }
   }
 </style>
