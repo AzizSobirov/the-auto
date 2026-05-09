@@ -31,6 +31,18 @@
 }
 
 .text-h4 {
+  font-size: rem(20);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-family: var(--font-secondary);
+
+  strong,
+  b {
+    font-weight: 700;
+  }
+}
+
+.text-h5 {
   font-size: rem(16);
   text-transform: uppercase;
 
@@ -42,5 +54,5 @@
 
 .text-p {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 200;
 }

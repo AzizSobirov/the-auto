@@ -1,0 +1,116 @@
+---
+import { Section, H2, H3, H4, P, Image, Icon, Button } from 'ui'
+
+const cards = [
+  {
+    title: 'ОПЫТ',
+    description: 'Более 10 лет успешной работы, тысячи довольных клиентов.',
+    img: 'advantages/1.png',
+  },
+  {
+    title: 'ОТВЕТСТВЕННОСТЬ',
+    description: 'Работаем на совесть. Всегда делаем свою работу идеально.',
+    img: 'advantages/2.png',
+  },
+  {
+    title: 'МАТЕРИАЛЫ',
+    description: 'Используем только лучшие материалы и инструменты в работе.',
+    img: 'advantages/3.png',
+  },
+  {
+    title: 'СПЕЦИАЛИСТЫ',
+    description: 'Все наши сотрудники имеют большой опыт работы.',
+    img: 'advantages/4.png',
+  },
+]
+---
+
+<!-- Advantages -->
+<Section name="advantages">
+  <div class="advantages__list">
+    {
+      cards.map((card) => (
+        <div class="advantages__card">
+          <div class="advantages__card-img">
+            <Image src={card.img} alt={card.title} />
+          </div>
+          <div class="advantages__card-content">
+            <H4>{card.title}</H4>
+            <P>{card.description}</P>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Section>
+
+<style lang="scss" is:global>
+  @use 'scss/helpers' as *;
+
+  .advantages {
+    position: relative;
+
+    &__list {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: rem(20);
+
+      @include media('lg') {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include media('sm') {
+        grid-template-columns: 1fr;
+        gap: rem(16);
+      }
+    }
+
+    &__card {
+      position: relative;
+      height: rem(280);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: rem(20);
+      padding: rem(24);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+
+      @include media('sm') {
+        padding: rem(20);
+        height: rem(220);
+      }
+
+      &-img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: rem(190);
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+
+        @include media('xl') {
+          height: rem(180);
+        }
+        @include media('sm') {
+          height: rem(140);
+        }
+
+        img {
+          height: 100%;
+          width: auto;
+          object-fit: contain;
+        }
+      }
+
+      &-content {
+        display: flex;
+        flex-direction: column;
+        gap: rem(12);
+      }
+    }
+  }
+</style>
