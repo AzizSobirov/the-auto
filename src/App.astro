@@ -48,27 +48,6 @@ const { title } = Astro.props
       href="apple-touch-icon-192x192.png"
     />
     <link rel="stylesheet" href="/assets/fonts/stylesheet.css" />
-    <link
-      rel="preload"
-      href="/assets/fonts/TTInterfaces-Regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/assets/fonts/TTInterfaces-Bold.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/assets/fonts/SuisseIntl-Regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
     {styles.map((style) => <link rel="stylesheet" href={style} />)}
     <title>{title}</title>
     <slot name="head" />

@@ -1,0 +1,133 @@
+---
+import { Section, H2, H3, H5, P, Image, Icon, Button } from 'ui'
+---
+
+<!-- About -->
+<Section name="about">
+  <div class="about__header group">
+    <H5>О КОМПАНИИ</H5>
+    <div class="group-row">
+      <div class="about__header-title">the <strong>auto</strong></div>
+      <div class="about__header-subtitle">
+        детейлинг центр нового поколения в москве
+      </div>
+    </div>
+  </div>
+
+  <P class="about__desc">
+    Профессиональный детейлинг-центр с опытом более 10 лет. Мы улучшаем внешний
+    вид и состояние автомобиля, создавая новый уровень эстетики, статуса и
+    индивидуальности за счёт ручной работы, профессиональных материалов и
+    внимания к каждой детали.
+  </P>
+
+  <a class="about__link text-p group-row" href="#">
+    <span>Подробнее о компании</span>
+    <svg
+      width="51"
+      height="8"
+      viewBox="0 0 51 8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M50.8536 4.03544C51.0488 3.84018 51.0488 3.52359 50.8536 3.32833L47.6716 0.146351C47.4763 -0.0489113 47.1597 -0.0489113 46.9645 0.146351C46.7692 0.341613 46.7692 0.658195 46.9645 0.853458L49.7929 3.68188L46.9645 6.51031C46.7692 6.70557 46.7692 7.02216 46.9645 7.21742C47.1597 7.41268 47.4763 7.41268 47.6716 7.21742L50.8536 4.03544ZM0 3.68188V4.18188H50.5V3.68188V3.18188H0V3.68188Z"
+        fill="white"></path>
+    </svg>
+  </a>
+
+  <div class="about__image">
+    <Image src="about/img.png" alt="About" />
+  </div>
+</Section>
+
+<style lang="scss" is:global>
+  @use 'scss/helpers' as *;
+
+  .about {
+    position: relative;
+
+    .container {
+      gap: rem(36);
+    }
+
+    &__header {
+      gap: rem(5);
+
+      .group-row {
+        width: 100%;
+        gap: 0 rem(40);
+
+        @include media('lg') {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      &-title {
+        font-size: clamp(2.25rem, 0.8724rem + 6.1224vw, 6rem);
+        text-transform: uppercase;
+        font-family: var(--font-secondary);
+        font-weight: 300;
+        white-space: nowrap;
+
+        strong,
+        b {
+          font-weight: 900;
+        }
+      }
+
+      &-subtitle {
+        font-size: clamp(1.25rem, 0.9107rem + 1.4085vw, 2.25rem);
+        text-transform: uppercase;
+        font-weight: 300;
+        font-family: var(--font-secondary);
+      }
+    }
+
+    &__desc {
+      width: 100%;
+      max-width: rem(580);
+    }
+
+    &__link {
+      position: relative;
+      padding-bottom: 3px;
+      gap: rem(10);
+
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: #fff;
+        transition: height 0.3s ease;
+      }
+
+      &:hover::before {
+        height: 2px;
+      }
+    }
+
+    &__image {
+      margin-top: rem(10);
+      max-height: rem(425);
+      width: 100%;
+      border-radius: rem(35);
+
+      @include media('sm') {
+        height: rem(200);
+        border-radius: rem(20);
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: inherit;
+      }
+    }
+  }
+</style>
