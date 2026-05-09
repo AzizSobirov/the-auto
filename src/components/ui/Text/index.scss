@@ -16,6 +16,7 @@
   line-height: 1.2;
   font-family: var(--font-secondary);
   text-transform: uppercase;
+  font-weight: 300;
 
   strong,
   b {
@@ -56,4 +57,8 @@
 .text-p {
   font-size: 1rem;
   font-weight: 200;
+
+  @include media('sm') {
+    font-size: rem(14);
+  }
 }

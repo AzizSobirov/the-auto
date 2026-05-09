@@ -158,6 +158,12 @@
     @include media('xl') {
       margin-left: rem(80);
     }
+    @include media('lg') {
+      margin-left: 0;
+    }
+    @include media(rem(980)) {
+      margin-left: rem(80);
+    }
     @include media('sm') {
       margin-left: rem(60);
     }
