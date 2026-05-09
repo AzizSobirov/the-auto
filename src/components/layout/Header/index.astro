@@ -1,209 +1,110 @@
 ---
 import { H2, Image, Icon, Button } from 'ui'
 import './index.scss'
+
+const catalogList = [
+  {
+    name: 'ДЕТЕЙЛИНГ',
+    href: '#',
+    children: [
+      { name: 'Детейлинг химчистка салона', href: '#' },
+      { name: 'Детейлинг подкапотного пространства', href: '#' },
+      { name: 'Детейлинг подвески с арками', href: '#' },
+      { name: 'Детейлинг подвески с арками', href: '#' },
+    ],
+  },
+  {
+    name: 'ДРУГИЕ РАБОТЫ',
+    href: '#',
+    children: [
+      { name: 'Перешив-восстановление салона', href: '#' },
+      { name: 'Перешив руля', href: '#' },
+      { name: 'Звездное небо', href: '#' },
+      { name: 'Шумоизоляция салона', href: '#' },
+      { name: 'Изготовление и ламинация карбоновых элементов', href: '#' },
+      { name: 'Блек пакет и дооснащение на Мерседес G63', href: '#' },
+    ],
+  },
+  {
+    name: 'ПОЛИРОВКА',
+    href: '#',
+    children: [
+      { name: 'Полировка кузова авто', href: '#' },
+      { name: 'Полировка деталей салона', href: '#' },
+      { name: 'Полировка мото техники', href: '#' },
+    ],
+  },
+  {
+    name: 'ПОКРЫТИЕ',
+    href: '#',
+    children: [
+      { name: 'Керамическое покрытие кузова', href: '#' },
+      { name: 'Керамическое покрытие салона', href: '#' },
+      { name: 'Антидождь', href: '#' },
+      { name: 'Керамическое покрытие дисков', href: '#' },
+    ],
+  },
+  {
+    name: 'ОКЛЕЙКА',
+    href: '#',
+    children: [
+      { name: 'Оклейка антигравийной пленкой', href: '#' },
+      { name: 'Оклейка виниловой пленкой', href: '#' },
+      { name: 'Оклейка элементов черный глянец', href: '#' },
+      { name: 'Бронь стеклянных элементов', href: '#' },
+    ],
+  },
+]
 ---
 
 <header class="header">
   <div class="container">
+    <div class="header__burger">
+      <div class="header__burger-lines">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <a href="tel:+79999999999" class="header__phone"> 8 (999) 999-99-99 </a>
+
     <a href="/" class="header__logo">
       <Image src="logo.svg" alt="logo" />
     </a>
 
     <nav class="header__menu">
       <ul class="menu">
-        <li class="menu-item menu-item-has-children">
-          <a href="/services">Услуги</a>
-          <ul class="sub-menu">
-            <li class="menu-item">
-              <a href="/services/service">Цены на услуги</a>
-            </li>
-            <li class="menu-item">
-              <a href="/services/service">Цены на услуги</a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item"><a href="/team">Команда</a></li>
-        <li class="menu-item"><a href="/projects">Проекты</a></li>
-        <li class="menu-item"><a href="/news">Новости</a></li>
+        <li class="menu-item"><a href="/about">О нас</a></li>
+        <li class="menu-item"><a href="/reviews">Отзывы</a></li>
+        <li class="menu-item"><a href="/projects">Наши работы</a></li>
         <li class="menu-item"><a href="/contacts">Контакты</a></li>
       </ul>
     </nav>
 
-    <div class="header__right">
-      <a href="#" class="header__right-location">
-        Москва, ул. <br /> Пушкина 8, каб. 388
-      </a>
+    <div class="header__catalog">
+      <ul class="menu">
+        {
+          catalogList.map((item) => (
+            <li
+              class="menu-item"
+              class:list={item.children && 'menu-item-has-children'}
+            >
+              <a href={item.href}>{item.name}</a>
 
-      <a
-        href="tel:+79112331212"
-        target="_blank"
-        rel="noopener noreferrer"
-        title="Позвонить нам"
-        class="header__right-phone"
-        aria-label="Позвонить нам"
-      >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M11.5255 13.807C11.6976 13.886 11.8915 13.9041 12.0753 13.8582C12.259 13.8123 12.4216 13.7052 12.5364 13.5545L12.8322 13.167C12.9874 12.96 13.1887 12.792 13.4202 12.6763C13.6516 12.5606 13.9068 12.5003 14.1655 12.5003H16.6655C17.1076 12.5003 17.5315 12.6759 17.844 12.9885C18.1566 13.301 18.3322 13.725 18.3322 14.167V16.667C18.3322 17.109 18.1566 17.5329 17.844 17.8455C17.5315 18.1581 17.1076 18.3337 16.6655 18.3337C12.6873 18.3337 8.87197 16.7533 6.05893 13.9403C3.24588 11.1272 1.66553 7.31191 1.66553 3.33366C1.66553 2.89163 1.84112 2.46771 2.15368 2.15515C2.46624 1.84259 2.89017 1.66699 3.33219 1.66699H5.83219C6.27422 1.66699 6.69814 1.84259 7.0107 2.15515C7.32326 2.46771 7.49886 2.89163 7.49886 3.33366V5.83366C7.49886 6.0924 7.43862 6.34759 7.32291 6.57901C7.20719 6.81044 7.03919 7.01175 6.83219 7.16699L6.44219 7.45949C6.28921 7.57631 6.18138 7.74248 6.13702 7.92978C6.09266 8.11709 6.11451 8.31397 6.19886 8.48699C7.33776 10.8002 9.21088 12.671 11.5255 13.807Z"
-            fill="#005A87"></path>
-        </svg>
-      </a>
-
-      <div class="header__right-contacts">
-        <a
-          class="header__right-contacts-phone"
-          href="tel:+79112331212"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Позвонить нам"
-        >
-          +7 (911) 233-12-12
-        </a>
-        <a
-          class="header__right-contacts-mail"
-          href="mailto:info@grigoriev.ru"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Написать нам"
-        >
-          info@grigoriev.ru
-        </a>
-      </div>
-
-      <button
-        class="header__right-callback"
-        type="button"
-        aria-label="Связаться с нами"
-        data-modal="callback"
-      >
-        Свяжитесь с нами
-      </button>
-    </div>
-
-    <div class="header__burger">
-      <button
-        class="header__burger-open"
-        aria-label="Открыть меню"
-        type="button"
-      >
-        <svg
-          width="20"
-          height="11"
-          viewBox="0 0 20 11"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect width="20" height="1" rx="0.5" fill="#0A0A0A"></rect>
-          <rect y="5" width="20" height="1" rx="0.5" fill="#0A0A0A"></rect>
-          <rect y="10" width="20" height="1" rx="0.5" fill="#0A0A0A"></rect>
-        </svg>
-      </button>
-      <button
-        class="header__burger-close"
-        aria-label="Закрыть меню"
-        type="button"
-      >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect
-            x="2.22168"
-            y="16.1426"
-            width="20"
-            height="2"
-            rx="1"
-            transform="rotate(-45 2.22168 16.1426)"
-            fill="#0A0A0A"></rect>
-          <rect
-            x="3.63623"
-            y="2.22168"
-            width="20"
-            height="2"
-            rx="1"
-            transform="rotate(45 3.63623 2.22168)"
-            fill="#0A0A0A"></rect>
-        </svg>
-      </button>
+              {item.children && (
+                <ul class="sub-menu">
+                  {item.children.map((child) => (
+                    <li class="menu-item">
+                      <a href={child.href}>{child.name}</a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
 </header>
-
-<div class="sidebar">
-  <div class="sidebar__menu"></div>
-
-  <div class="sidebar__footer">
-    <div class="sidebar__contacts">
-      <a
-        href="tel:+74012233333"
-        target="_blank"
-        rel="noopener noreferrer"
-        title="Позвонить нам"
-        class="sidebar__contacts-phone"
-      >
-        +7 (4012) 233-33-33
-      </a>
-      <a
-        href="mailto:info@grigoriev.ru"
-        target="_blank"
-        rel="noopener noreferrer"
-        title="Написать нам"
-        class="sidebar__contacts-email"
-      >
-        info@grigoriev.ru
-      </a>
-    </div>
-
-    <div class="sidebar__social">
-      <a href="#" class="sidebar__social-item">Telegram</a>
-      <a href="#" class="sidebar__social-item">VKontakte</a>
-      <a href="#" class="sidebar__social-item">WhatsApp</a>
-    </div>
-
-    <div class="sidebar__location">
-      <p class="sidebar__location-city">Москва</p>
-      <p class="sidebar__location-street">
-        Холодильный переулок, 3, к1с82-й этаж, офис — 8210
-      </p>
-    </div>
-
-    <div class="sidebar__socials">
-      <a
-        href="#"
-        class="sidebar__socials-item"
-        aria-label="Мы в Telegram"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Icon src="telegram.svg" />
-      </a>
-      <a
-        href="#"
-        class="sidebar__socials-item"
-        aria-label="Мы в Youtube"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Icon src="youtube.svg" />
-      </a>
-      <a
-        href="#"
-        class="sidebar__socials-item"
-        aria-label="Мы в VK"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Icon src="vk.svg" />
-      </a>
-    </div>
-  </div>
-</div>

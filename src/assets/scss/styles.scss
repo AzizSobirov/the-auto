@@ -9,6 +9,10 @@
 #app {
   min-height: 100vh;
   padding-top: rem(16);
+
+  @include media('xl') {
+    padding-top: 0;
+  }
 }
 
 .app-content {
@@ -18,6 +22,12 @@
   max-width: calc(var(--content-width) + var(--content-padding) * 2);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: rem(50);
+
+  @include media('xl') {
+    border-radius: 0;
+    max-width: 100%;
+    border: none;
+  }
 
   &::before {
     content: '';
