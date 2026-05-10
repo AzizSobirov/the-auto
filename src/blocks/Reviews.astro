@@ -337,11 +337,18 @@ const { is_main = false } = Astro.props
       width: 100%;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      grid-template-rows: 1fr;
       gap: rem(20);
+
+      .reviews__card {
+        height: rem(540);
+      }
 
       @include media('sm') {
         gap: rem(15);
+
+        .reviews__card {
+          height: 55vh;
+        }
       }
     }
 

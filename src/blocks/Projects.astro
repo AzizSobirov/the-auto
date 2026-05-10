@@ -54,6 +54,8 @@ const projects = [
       '/assets/img/projects/5.png,/assets/img/projects/4.png,/assets/img/projects/3.png',
   },
 ]
+
+const categories = [...new Set(projects.map((p) => p.category))]
 ---
 
 <!-- Projects -->
@@ -63,71 +65,129 @@ const projects = [
     <H2>Мы ценим <strong>каждую машину</strong> как свою</H2>
   </div>
 
-  <div class="projects__swiper">
-    <div class="swiper">
-      <div class="swiper-wrapper">
-        {
-          projects.map((p) => (
-            <div class="swiper-slide">
-              <div
-                class="projects__card"
-                data-title={p.title}
-                data-category={p.category}
-                data-desc={p.desc}
-                data-images={p.images}
-              >
-                <div class="projects__card-img">
-                  <Image src={p.img} />
-                </div>
-                <div class="projects__card-content">
-                  <H3>{p.title}</H3>
-                  <P>{p.category}</P>
-                </div>
-                <div class="projects__card-arrow group-row">
-                  <svg
-                    width="21"
-                    height="8"
-                    viewBox="0 0 21 8"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.5 3.18213C0.223858 3.18213 0 3.40599 0 3.68213C0 3.95827 0.223858 4.18213 0.5 4.18213V3.68213V3.18213ZM20.8536 4.03568C21.0488 3.84042 21.0488 3.52384 20.8536 3.32858L17.6716 0.146595C17.4763 -0.0486672 17.1597 -0.0486672 16.9645 0.146595C16.7692 0.341857 16.7692 0.65844 16.9645 0.853702L19.7929 3.68213L16.9645 6.51056C16.7692 6.70582 16.7692 7.0224 16.9645 7.21766C17.1597 7.41293 17.4763 7.41293 17.6716 7.21766L20.8536 4.03568ZM0.5 3.68213V4.18213L20.5 4.18213V3.68213V3.18213L0.5 3.18213V3.68213Z"
-                      fill="white"
-                    />
-                  </svg>
+  {
+    !is_main ? (
+      <div class="projects__swiper">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            {projects.map((p) => (
+              <div class="swiper-slide">
+                <div
+                  class="projects__card"
+                  data-title={p.title}
+                  data-category={p.category}
+                  data-desc={p.desc}
+                  data-images={p.images}
+                >
+                  <div class="projects__card-img">
+                    <Image src={p.img} />
+                  </div>
+                  <div class="projects__card-content">
+                    <H3>{p.title}</H3>
+                    <P>{p.category}</P>
+                  </div>
+                  <div class="projects__card-arrow group-row">
+                    <svg
+                      width="21"
+                      height="8"
+                      viewBox="0 0 21 8"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0.5 3.18213C0.223858 3.18213 0 3.40599 0 3.68213C0 3.95827 0.223858 4.18213 0.5 4.18213V3.68213V3.18213ZM20.8536 4.03568C21.0488 3.84042 21.0488 3.52384 20.8536 3.32858L17.6716 0.146595C17.4763 -0.0486672 17.1597 -0.0486672 16.9645 0.146595C16.7692 0.341857 16.7692 0.65844 16.9645 0.853702L19.7929 3.68213L16.9645 6.51056C16.7692 6.70582 16.7692 7.0224 16.9645 7.21766C17.1597 7.41293 17.4763 7.41293 17.6716 7.21766L20.8536 4.03568ZM0.5 3.68213V4.18213L20.5 4.18213V3.68213V3.18213L0.5 3.18213V3.68213Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="projects__swiper-footer">
+          <a href="/projects" class="projects__link">
+            <span class="projects__link-name">Перейти в портфолио</span>
+            <span class="projects__link-arrow">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.6169 0.999765C17.6169 0.447481 17.1692 -0.000234596 16.6169 -0.000234849L7.61693 -0.000234049C7.06465 -0.000234386 6.61693 0.447481 6.61693 0.999766C6.61693 1.55205 7.06465 1.99977 7.61693 1.99977L15.6169 1.99977L15.6169 9.99977C15.6169 10.552 16.0646 10.9998 16.6169 10.9998C17.1692 10.9998 17.6169 10.5521 17.6169 9.99977L17.6169 0.999765ZM0.707031 16.9097L1.41414 17.6168L17.324 1.70687L16.6169 0.999766L15.9098 0.292659L-7.55191e-05 16.2026L0.707031 16.9097Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </a>
+
+          <div class="projects__swiper-nav">
+            <div class="btn-prev" />
+            <div class="btn-next" />
+          </div>
+        </div>
+      </div>
+    ) : (
+      <>
+        <div class="projects__filter">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <button class="projects__filter-btn active" data-filter="all">
+                  ВСЕ
+                </button>
+              </div>
+              {categories.map((cat) => (
+                <div class="swiper-slide">
+                  <button class="projects__filter-btn" data-filter={cat}>
+                    {cat}
+                  </button>
+                </div>
+              ))}
             </div>
-          ))
-        }
-      </div>
-    </div>
-
-    <div class="projects__swiper-footer">
-      <a href="/projects" class="projects__link">
-        <span class="projects__link-name">Перейти в портфолио</span>
-        <span class="projects__link-arrow">
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M17.6169 0.999765C17.6169 0.447481 17.1692 -0.000234596 16.6169 -0.000234849L7.61693 -0.000234049C7.06465 -0.000234386 6.61693 0.447481 6.61693 0.999766C6.61693 1.55205 7.06465 1.99977 7.61693 1.99977L15.6169 1.99977L15.6169 9.99977C15.6169 10.552 16.0646 10.9998 16.6169 10.9998C17.1692 10.9998 17.6169 10.5521 17.6169 9.99977L17.6169 0.999765ZM0.707031 16.9097L1.41414 17.6168L17.324 1.70687L16.6169 0.999766L15.9098 0.292659L-7.55191e-05 16.2026L0.707031 16.9097Z"
-              fill="currentColor"></path>
-          </svg>
-        </span>
-      </a>
-
-      <div class="projects__swiper-nav">
-        <div class="btn-prev"></div>
-        <div class="btn-next"></div>
-      </div>
-    </div>
-  </div>
+          </div>
+        </div>
+        <div class="projects__list">
+          {projects.map((p) => (
+            <div
+              class="projects__card"
+              data-title={p.title}
+              data-category={p.category}
+              data-filter={p.category}
+              data-desc={p.desc}
+              data-images={p.images}
+            >
+              <div class="projects__card-img">
+                <Image src={p.img} />
+              </div>
+              <div class="projects__card-content">
+                <H3>{p.title}</H3>
+                <P>{p.category}</P>
+              </div>
+              <div class="projects__card-arrow group-row">
+                <svg
+                  width="21"
+                  height="8"
+                  viewBox="0 0 21 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0.5 3.18213C0.223858 3.18213 0 3.40599 0 3.68213C0 3.95827 0.223858 4.18213 0.5 4.18213V3.68213V3.18213ZM20.8536 4.03568C21.0488 3.84042 21.0488 3.52384 20.8536 3.32858L17.6716 0.146595C17.4763 -0.0486672 17.1597 -0.0486672 16.9645 0.146595C16.7692 0.341857 16.7692 0.65844 16.9645 0.853702L19.7929 3.68213L16.9645 6.51056C16.7692 6.70582 16.7692 7.0224 16.9645 7.21766C17.1597 7.41293 17.4763 7.41293 17.6716 7.21766L20.8536 4.03568ZM0.5 3.68213V4.18213L20.5 4.18213V3.68213V3.18213L0.5 3.18213V3.68213Z"
+                    fill="white"
+                  />
+                </svg>
+              </div>
+            </div>
+          ))}
+        </div>
+      </>
+    )
+  }
 </Section>
 
 <style lang="scss" is:global>
@@ -135,6 +195,7 @@ const projects = [
 
   .projects {
     position: relative;
+    overflow: hidden;
 
     .container {
       gap: rem(40);
@@ -289,6 +350,80 @@ const projects = [
               right: 35%;
             }
           }
+        }
+      }
+    }
+
+    &__filter {
+      width: 100%;
+
+      .swiper {
+        overflow: visible;
+      }
+
+      .swiper-slide {
+        width: fit-content !important;
+      }
+
+      &-btn {
+        padding: rem(12) rem(30);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 9999px;
+        color: #fff;
+        font-size: rem(14);
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+
+        @include media('sm') {
+          padding: rem(10) rem(20);
+          font-size: rem(12);
+        }
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.08);
+          border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        &.active {
+          background: #c36b3d;
+          border-color: #c36b3d;
+        }
+      }
+    }
+
+    &__list {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: rem(20);
+
+      .projects__card {
+        height: rem(540);
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease,
+          visibility 0.4s;
+
+        &.hidden {
+          opacity: 0;
+          transform: scale(0.95);
+          visibility: hidden;
+          position: absolute;
+          pointer-events: none;
+        }
+      }
+
+      @include media('sm') {
+        grid-template-columns: 1fr;
+        gap: rem(15);
+
+        .projects__card {
+          height: 55vh;
         }
       }
     }

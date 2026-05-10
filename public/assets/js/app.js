@@ -84,85 +84,6 @@ const modal = {
 }
 modal.init()
 
-// Header
-const header = document.querySelector('.header')
-if (header) {
-  const burger = header.querySelector('.header__burger')
-
-  burger?.addEventListener('click', () => {
-    header.classList.toggle('header--open')
-    if (header.classList.contains('header--open')) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-  })
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      header.classList.add('header--scrolled')
-    } else {
-      header.classList.remove('header--scrolled')
-    }
-  })
-}
-
-// Footer
-const currentYear = document.getElementById('current-year')
-if (currentYear) {
-  currentYear.textContent = new Date().getFullYear()
-}
-
-// Swiper
-let stepsSwiper = new Swiper('.steps .swiper', {
-  slidesPerView: 'auto',
-  spaceBetween: 12,
-  breakpoints: {
-    1025: {
-      slidesPerView: 2,
-      spaceBetween: 12,
-    },
-  },
-})
-
-let reviewsSwiper = new Swiper('.reviews__swiper .swiper', {
-  slidesPerView: 'auto',
-  spaceBetween: 16,
-  navigation: {
-    nextEl: '.reviews__swiper .btn-next',
-    prevEl: '.reviews__swiper .btn-prev',
-  },
-  breakpoints: {
-    640: {
-      slidesPerView: 2,
-      spaceBetween: 15,
-    },
-    1280: {
-      slidesPerView: 3,
-      spaceBetween: 20,
-    },
-  },
-})
-
-let projectsSwiper = new Swiper('.projects__swiper .swiper', {
-  slidesPerView: 1,
-  spaceBetween: 12,
-  navigation: {
-    nextEl: '.projects__swiper .btn-next',
-    prevEl: '.projects__swiper .btn-prev',
-  },
-  breakpoints: {
-    769: {
-      slidesPerView: 2,
-      spaceBetween: 15,
-    },
-    1025: {
-      slidesPerView: 3,
-      spaceBetween: 20,
-    },
-  },
-})
-
 // Project modal
 const projectModal = {
   images: [],
@@ -240,7 +161,127 @@ const projectModal = {
     nextBtn?.classList.toggle('disabled', index === this.images.length - 1)
   },
 }
-projectModal.init()
+
+// Header
+const header = document.querySelector('.header')
+if (header) {
+  const burger = header.querySelector('.header__burger')
+
+  burger?.addEventListener('click', () => {
+    header.classList.toggle('header--open')
+    if (header.classList.contains('header--open')) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+  })
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('header--scrolled')
+    } else {
+      header.classList.remove('header--scrolled')
+    }
+  })
+}
+
+// Projects
+const projectsEl = document.querySelector('.projects')
+if (projectsEl) {
+  const filter = projectsEl.querySelector('.projects__filter')
+  const cards = projectsEl.querySelectorAll('.projects__card')
+
+  if (filter) {
+    const btns = filter.querySelectorAll('.projects__filter-btn')
+
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filterValue = btn.dataset.filter
+
+        // Update active class
+        btns.forEach((b) => b.classList.remove('active'))
+        btn.classList.add('active')
+
+        // Filter cards
+        cards.forEach((card) => {
+          if (filterValue === 'all' || card.dataset.filter === filterValue) {
+            card.classList.remove('hidden')
+          } else {
+            card.classList.add('hidden')
+          }
+        })
+      })
+    })
+  }
+
+  projectModal.init()
+}
+
+// Footer
+const currentYear = document.getElementById('current-year')
+if (currentYear) {
+  currentYear.textContent = new Date().getFullYear()
+}
+
+// Swiper
+let stepsSwiper = new Swiper('.steps .swiper', {
+  slidesPerView: 'auto',
+  spaceBetween: 12,
+  breakpoints: {
+    1025: {
+      slidesPerView: 2,
+      spaceBetween: 12,
+    },
+  },
+})
+
+let reviewsSwiper = new Swiper('.reviews__swiper .swiper', {
+  slidesPerView: 'auto',
+  spaceBetween: 16,
+  navigation: {
+    nextEl: '.reviews__swiper .btn-next',
+    prevEl: '.reviews__swiper .btn-prev',
+  },
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 15,
+    },
+    1280: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+  },
+})
+
+let projectsSwiper = new Swiper('.projects__swiper .swiper', {
+  slidesPerView: 1,
+  spaceBetween: 12,
+  navigation: {
+    nextEl: '.projects__swiper .btn-next',
+    prevEl: '.projects__swiper .btn-prev',
+  },
+  breakpoints: {
+    769: {
+      slidesPerView: 2,
+      spaceBetween: 15,
+    },
+    1025: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+  },
+})
+
+let projectsFilter = new Swiper('.projects .projects__filter .swiper', {
+  slidesPerView: 'auto',
+  spaceBetween: 12,
+  breakpoints: {
+    1025: {
+      spaceBetween: 20,
+    },
+  },
+})
 
 // Initialize the fancybox
 const fancyboxTriggers = Array.from(
