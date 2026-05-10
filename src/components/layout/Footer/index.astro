@@ -40,67 +40,59 @@ import { Image } from 'ui'
     }
 
     &__inner {
-      display: grid;
-      grid-template-columns: rem(300) 1fr rem(480);
+      width: 100%;
+      display: flex;
       align-items: center;
-      gap: rem(40);
-
-      @include media('xl') {
-        grid-template-columns: rem(250) 1fr rem(400);
-      }
+      justify-content: space-between;
+      gap: rem(80);
 
       @include media('lg') {
-        grid-template-columns: 1fr 1fr;
-        gap: rem(32);
-      }
-
-      @include media('md') {
-        grid-template-columns: 1fr;
-        text-align: center;
+        flex-direction: column;
+        gap: rem(40);
       }
     }
 
     &__info {
+      width: rem(280);
+      flex-shrink: 0;
       display: flex;
       flex-direction: column;
-      gap: rem(24);
+      align-items: center;
+      gap: rem(18);
 
-      @include media('md') {
-        align-items: center;
+      @include media('sm') {
+        width: rem(220);
       }
     }
 
     &__logo {
-      img {
-        height: rem(80);
-        width: auto;
+      width: 100%;
 
-        @include media('xl') {
-          height: rem(60);
-        }
+      img {
+        width: 100%;
       }
     }
 
     &__copyright {
       font-size: rem(14);
-      opacity: 0.5;
-      font-weight: 300;
+      font-weight: 200;
     }
 
     &__contacts {
       display: flex;
       flex-direction: column;
       gap: rem(12);
+      flex-shrink: 0;
 
-      @include media('md') {
-        order: 1;
+      @include media('lg') {
+        align-items: center;
       }
     }
 
     &__address {
-      font-size: rem(18);
-      opacity: 0.7;
-      font-weight: 300;
+      font-size: rem(16);
+      font-weight: 200;
+      letter-spacing: 2%;
     }
 
     &__phone {
@@ -118,27 +110,25 @@ import { Image } from 'ui'
     }
 
     &__hours {
-      font-size: rem(18);
-      opacity: 0.5;
-      font-weight: 300;
+      font-size: rem(16);
+      font-weight: 200;
+      letter-spacing: 2%;
     }
 
     &__map {
       width: 100%;
-      height: rem(240);
-      border-radius: rem(30);
+      height: rem(180);
+      border-radius: rem(20);
       overflow: hidden;
       position: relative;
 
       @include media('lg') {
-        grid-column: span 2;
         height: rem(300);
       }
 
       @include media('md') {
         grid-column: span 1;
         height: rem(200);
-        order: -1;
       }
 
       iframe {
