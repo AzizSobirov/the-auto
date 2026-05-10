@@ -463,7 +463,6 @@ const { is_main = false } = Astro.props
     &__card {
       position: relative;
       width: 100%;
-      max-height: rem(540);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: rem(35);
       display: flex;
@@ -473,7 +472,6 @@ const { is_main = false } = Astro.props
       cursor: pointer;
 
       @include media('sm') {
-        max-height: 55vh;
         border-radius: rem(20);
       }
 

@@ -1,14 +1,245 @@
 ---
-import { Section,H2,H3,P, Image, Icon, Button } from "ui";
+import { Section, H2, H3, H5, P, Icon, Image, Button } from 'ui'
 ---
 
 <!-- Contacts -->
-<Section name="contacts"> .contacts </Section>
+<Section name="contacts">
+  <div class="contacts__header">
+    <H5>НАШИ КОНТАКТЫ</H5>
+    <H2>СПОСОБЫ <strong>СВЯЗИ</strong> С НАМИ</H2>
+  </div>
+
+  <div class="contacts__wrapper">
+    <div class="contacts__map">
+      <iframe
+        src="https://yandex.uz/map-widget/v1/?ll=37.645254%2C55.746733&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzE2NjM5MxIa0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAiCg14eBZCFfUFX0I%2C&z=11.61"
+        allowfullscreen="true"></iframe>
+    </div>
+
+    <div class="contacts__card">
+      <div class="contacts__info">
+        <div class="contacts__info-item">г. Москва, ул. Такая-то, д. 1</div>
+        <a href="tel:89999999999" class="contacts__phone">8 (999) 999-99-99</a>
+        <div class="contacts__hours">Ежедневно с 10:00 - 20:00</div>
+      </div>
+
+      <div class="contacts__socials">
+        <a href="#" class="contacts__socials-item" target="_blank">
+          <Icon src="vk.svg" />
+        </a>
+        <a href="#" class="contacts__socials-item" target="_blank">
+          <Icon src="chat.svg" />
+        </a>
+        <a href="#" class="contacts__socials-item" target="_blank">
+          <Icon src="telegram.svg" />
+        </a>
+      </div>
+
+      <div class="contacts__actions">
+        <button class="contacts__btn" data-modal="callback">
+          <span>ОНЛАЙН ЗАПИСЬ</span>
+          <div class="contacts__btn-arrow">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.6169 0.999765C17.6169 0.447481 17.1692 -0.000234596 16.6169 -0.000234849L7.61693 -0.000234049C7.06465 -0.000234386 6.61693 0.447481 6.61693 0.999766C6.61693 1.55205 7.06465 1.99977 7.61693 1.99977L15.6169 1.99977L15.6169 9.99977C15.6169 10.552 16.0646 10.9998 16.6169 10.9998C17.1692 10.9998 17.6169 10.5521 17.6169 9.99977L17.6169 0.999765ZM0.707031 16.9097L1.41414 17.6168L17.324 1.70687L16.6169 0.999766L15.9098 0.292659L-7.55191e-05 16.2026L0.707031 16.9097Z"
+                fill="currentColor"></path>
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</Section>
 
 <style lang="scss" is:global>
-  @use "scss/helpers" as *;
+  @use 'scss/helpers' as *;
 
   .contacts {
     position: relative;
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      gap: rem(10);
+      margin-bottom: rem(40);
+    }
+
+    &__wrapper {
+      position: relative;
+      padding-bottom: rem(50);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: rem(40);
+
+      @include media('lg') {
+        padding-bottom: 0;
+      }
+    }
+
+    &__map {
+      width: 100%;
+      height: rem(368);
+      border-radius: rem(25);
+      overflow: hidden;
+
+      @include media('lg') {
+        height: rem(400);
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        filter: invert(1) grayscale(1);
+      }
+    }
+
+    &__card {
+      position: absolute;
+      bottom: 0;
+      left: rem(70);
+      z-index: 2;
+      backdrop-filter: blur(25px);
+      background: rgba(5, 23, 4, 0.55);
+      border: 1px solid #6a8d6c;
+      border-radius: rem(25);
+      padding: rem(42) rem(35);
+      width: rem(360);
+      display: flex;
+      flex-direction: column;
+      gap: rem(30);
+
+      @include media('lg') {
+        position: static;
+        width: 100%;
+        background: transparent;
+        border: none;
+        padding: 0;
+        backdrop-filter: none;
+        order: -1;
+      }
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      gap: rem(15);
+
+      &-item {
+        font-size: rem(16);
+        font-weight: 300;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.8);
+
+        @include media('sm') {
+          font-size: rem(14);
+        }
+      }
+    }
+
+    &__phone {
+      font-size: rem(28);
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      @include media('sm') {
+        font-size: rem(24);
+      }
+
+      &:hover {
+        color: #c36b3d;
+      }
+    }
+
+    &__hours {
+      font-size: rem(16);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    &__socials {
+      display: flex;
+      gap: rem(24);
+
+      &-item {
+        color: #fff;
+        transition: transform 0.3s ease;
+        --icon-size: #{rem(30)};
+
+        &:hover {
+          transform: translateY(-3px);
+          color: #c36b3d;
+        }
+
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    &__btn {
+      display: flex;
+      align-items: center;
+      gap: rem(10);
+      width: fit-content;
+      cursor: pointer;
+
+      span {
+        height: rem(35);
+        width: rem(215);
+        background: #c36b3d;
+        border-radius: rem(10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: rem(16);
+        letter-spacing: 8%;
+        transition: background 0.3s ease;
+      }
+
+      &-arrow {
+        width: rem(35);
+        height: rem(35);
+        border: 1px solid #c36b3d;
+        border-radius: rem(10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #c36b3d;
+        transition: all 0.3s ease;
+
+        svg {
+          width: rem(20);
+          height: rem(20);
+          transition: transform 0.3s ease;
+        }
+      }
+
+      &:hover {
+        span {
+          background: darken(#c36b3d, 10%);
+        }
+
+        .contacts__btn-arrow {
+          background: #c36b3d;
+          color: #fff;
+
+          svg {
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
   }
 </style>
