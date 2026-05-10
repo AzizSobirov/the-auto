@@ -1,0 +1,434 @@
+---
+import { Section, H2, H3, H4, H5, P, BgImg, Image, Button } from 'ui'
+import { Icon } from 'astro-icon/components'
+
+const { is_main = false } = Astro.props
+
+const projects = [
+  {
+    title: 'MERCEDES G63',
+    category: 'Детейлинг',
+    desc: 'Полный детейлинг кузова и салона легендарного внедорожника. Устранение загрязнений, полировка лакокрасочного покрытия и нанесение керамической защиты. Автомобиль восстановлен до заводского блеска.',
+    img: 'projects/0.png',
+    images:
+      '/assets/img/projects/0.png,/assets/img/projects/1.png,/assets/img/projects/2.png',
+  },
+  {
+    title: 'PORSCHE CAYENNE',
+    category: 'Керамика',
+    desc: 'Нанесение профессионального керамического покрытия на кузов автомобиля. Глубокая полировка поверхности, устранение царапин и нанесение двухслойной керамики с гарантией на 3 года.',
+    img: 'projects/1.png',
+    images:
+      '/assets/img/projects/1.png,/assets/img/projects/3.png,/assets/img/projects/5.png',
+  },
+  {
+    title: 'BMW M5 F90',
+    category: 'Оклейка плёнкой',
+    desc: 'Полная оклейка кузова антигравийной PPF-плёнкой класса Premium. Защита от сколов, царапин и химических воздействий. Плёнка с самовосстанавливающимся эффектом обеспечивает многолетнюю защиту.',
+    img: 'projects/2.png',
+    images:
+      '/assets/img/projects/2.png,/assets/img/projects/0.png,/assets/img/projects/4.png',
+  },
+  {
+    title: 'LAMBORGHINI URUS',
+    category: 'Полировка',
+    desc: 'Многоступенчатая абразивная полировка кузова суперкара. Устранение голограмм, царапин и окислений. После полировки покрытие сверкает как зеркало и готово к нанесению защитных составов.',
+    img: 'projects/3.png',
+    images:
+      '/assets/img/projects/3.png,/assets/img/projects/5.png,/assets/img/projects/1.png',
+  },
+  {
+    title: 'RANGE ROVER SPORT',
+    category: 'Химчистка салона',
+    desc: 'Профессиональная химчистка салона с обработкой паром и экологичными составами. Чистка сидений, потолка, ковровых покрытий и всех поверхностей. Устранение запахов и стойких загрязнений.',
+    img: 'projects/4.png',
+    images:
+      '/assets/img/projects/4.png,/assets/img/projects/2.png,/assets/img/projects/0.png',
+  },
+  {
+    title: 'BENTLEY BENTAYGA',
+    category: 'Оклейка винилом',
+    desc: 'Смена цвета кузова с помощью виниловой плёнки премиум-класса. Матовый графит с атласным финишем подчёркивает статус автомобиля. Полная обклейка с проклейкой всех сложных зон.',
+    img: 'projects/5.png',
+    images:
+      '/assets/img/projects/5.png,/assets/img/projects/4.png,/assets/img/projects/3.png',
+  },
+]
+---
+
+<!-- Projects -->
+<Section name="projects">
+  <div class="projects__header">
+    <H5>НАШИ РАБОТЫ</H5>
+    <H2>Мы ценим <strong>каждую машину</strong> как свою</H2>
+  </div>
+
+  <div class="projects__swiper">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        {
+          projects.map((p) => (
+            <div class="swiper-slide">
+              <div
+                class="projects__card"
+                data-title={p.title}
+                data-category={p.category}
+                data-desc={p.desc}
+                data-images={p.images}
+              >
+                <div class="projects__card-img">
+                  <Image src={p.img} />
+                </div>
+                <div class="projects__card-content">
+                  <H3>{p.title}</H3>
+                  <P>{p.category}</P>
+                </div>
+                <div class="projects__card-arrow group-row">
+                  <svg
+                    width="21"
+                    height="8"
+                    viewBox="0 0 21 8"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.5 3.18213C0.223858 3.18213 0 3.40599 0 3.68213C0 3.95827 0.223858 4.18213 0.5 4.18213V3.68213V3.18213ZM20.8536 4.03568C21.0488 3.84042 21.0488 3.52384 20.8536 3.32858L17.6716 0.146595C17.4763 -0.0486672 17.1597 -0.0486672 16.9645 0.146595C16.7692 0.341857 16.7692 0.65844 16.9645 0.853702L19.7929 3.68213L16.9645 6.51056C16.7692 6.70582 16.7692 7.0224 16.9645 7.21766C17.1597 7.41293 17.4763 7.41293 17.6716 7.21766L20.8536 4.03568ZM0.5 3.68213V4.18213L20.5 4.18213V3.68213V3.18213L0.5 3.18213V3.68213Z"
+                      fill="white"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="projects__swiper-footer">
+      <a href="/projects" class="projects__link">
+        <span class="projects__link-name">Перейти в портфолио</span>
+        <span class="projects__link-arrow">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.6169 0.999765C17.6169 0.447481 17.1692 -0.000234596 16.6169 -0.000234849L7.61693 -0.000234049C7.06465 -0.000234386 6.61693 0.447481 6.61693 0.999766C6.61693 1.55205 7.06465 1.99977 7.61693 1.99977L15.6169 1.99977L15.6169 9.99977C15.6169 10.552 16.0646 10.9998 16.6169 10.9998C17.1692 10.9998 17.6169 10.5521 17.6169 9.99977L17.6169 0.999765ZM0.707031 16.9097L1.41414 17.6168L17.324 1.70687L16.6169 0.999766L15.9098 0.292659L-7.55191e-05 16.2026L0.707031 16.9097Z"
+              fill="currentColor"></path>
+          </svg>
+        </span>
+      </a>
+
+      <div class="projects__swiper-nav">
+        <div class="btn-prev"></div>
+        <div class="btn-next"></div>
+      </div>
+    </div>
+  </div>
+</Section>
+
+<style lang="scss" is:global>
+  @use 'scss/helpers' as *;
+
+  .projects {
+    position: relative;
+
+    .container {
+      gap: rem(40);
+
+      @include media('lg') {
+        gap: rem(30);
+      }
+    }
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      gap: rem(10);
+    }
+
+    &__swiper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: rem(35);
+
+      @include media('sm') {
+        gap: rem(20);
+      }
+
+      .swiper {
+        height: rem(565);
+        width: 100%;
+
+        @include media('lg') {
+          height: rem(500);
+        }
+        @include media('sm') {
+          height: rem(440);
+        }
+      }
+
+      .swiper-slide {
+        height: 100%;
+      }
+
+      &-footer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: rem(20);
+
+        @include media('sm') {
+          flex-direction: column-reverse;
+          gap: rem(30);
+        }
+      }
+
+      &-nav {
+        display: flex;
+        gap: rem(12);
+
+        @include media('sm') {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .btn-prev,
+        .btn-next {
+          width: rem(180);
+          height: rem(35);
+          background: #c36b3d;
+          color: #fff;
+          border-radius: rem(10);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: 0.3s ease;
+          position: relative;
+
+          @include media('lg') {
+            width: rem(140);
+          }
+          @include media('sm') {
+            width: calc(50% - rem(6));
+          }
+
+          &::after {
+            content: '';
+            width: rem(100);
+            height: 1px;
+            background: currentColor;
+            position: absolute;
+
+            @include media('lg') {
+              width: rem(60);
+            }
+            @include media('sm') {
+              width: rem(40);
+            }
+          }
+
+          &::before {
+            content: '';
+            width: rem(8);
+            height: rem(8);
+            border-top: 1px solid currentColor;
+            border-right: 1px solid currentColor;
+            position: absolute;
+          }
+
+          &:hover {
+            background: darken(#c36b3d, 10%);
+          }
+
+          &.swiper-button-disabled {
+            color: #000;
+            background: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+          }
+        }
+
+        .btn-prev {
+          &::before {
+            transform: rotate(-135deg);
+            left: rem(40);
+
+            @include media('sm') {
+              left: 35%;
+            }
+          }
+          &::after {
+            left: rem(40);
+
+            @include media('sm') {
+              left: 35%;
+            }
+          }
+        }
+
+        .btn-next {
+          &::before {
+            transform: rotate(45deg);
+            right: rem(40);
+
+            @include media('sm') {
+              right: 35%;
+            }
+          }
+          &::after {
+            right: rem(40);
+
+            @include media('sm') {
+              right: 35%;
+            }
+          }
+        }
+      }
+    }
+
+    &__link {
+      height: rem(35);
+      display: flex;
+      align-items: center;
+      gap: rem(8);
+      color: #fff;
+      text-transform: uppercase;
+      font-size: rem(14);
+      font-weight: 500;
+
+      @include media('sm') {
+        width: 100%;
+      }
+
+      &-name {
+        height: 100%;
+        padding: 0 rem(20);
+        background: #c36b3d;
+        border-radius: rem(10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        letter-spacing: 0.08em;
+        flex-grow: 1;
+      }
+
+      &-arrow {
+        width: rem(35);
+        height: rem(35);
+        border: 1px solid #c36b3d;
+        border-radius: rem(10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s ease;
+        color: #c36b3d;
+
+        svg {
+          width: rem(18);
+          height: rem(18);
+          transition: 0.3s ease;
+        }
+      }
+
+      &:hover {
+        .projects__link-arrow svg {
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+    &__card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: rem(35);
+      overflow: hidden;
+      cursor: pointer;
+
+      @include media('sm') {
+        border-radius: rem(20);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        pointer-events: none;
+      }
+
+      &-img {
+        width: 100%;
+        height: 100%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-width: calc(100% - rem(80));
+        height: 100%;
+        padding: rem(30);
+        border-radius: inherit;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        gap: rem(10);
+
+        @include media('sm') {
+          padding: rem(25);
+          gap: rem(8);
+        }
+
+        .text-p {
+          letter-spacing: 2%;
+        }
+      }
+
+      &-arrow {
+        position: absolute;
+        bottom: rem(30);
+        right: rem(30);
+        z-index: 2;
+        width: rem(36);
+        height: rem(36);
+        border-radius: rem(10);
+        justify-content: center;
+        border: 1px solid #fff;
+
+        @include media('sm') {
+          bottom: rem(25);
+          right: rem(25);
+        }
+
+        svg {
+          transition: transform 0.2s ease;
+        }
+      }
+
+      &:hover .projects__card-arrow svg {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+</style>

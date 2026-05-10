@@ -144,6 +144,104 @@ let reviewsSwiper = new Swiper('.reviews__swiper .swiper', {
   },
 })
 
+let projectsSwiper = new Swiper('.projects__swiper .swiper', {
+  slidesPerView: 1,
+  spaceBetween: 12,
+  navigation: {
+    nextEl: '.projects__swiper .btn-next',
+    prevEl: '.projects__swiper .btn-prev',
+  },
+  breakpoints: {
+    769: {
+      slidesPerView: 2,
+      spaceBetween: 15,
+    },
+    1025: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+  },
+})
+
+// Project modal
+const projectModal = {
+  images: [],
+  imgIndex: 0,
+
+  init() {
+    const cards = Array.from(document.querySelectorAll('.projects__card'))
+    if (!cards.length) return
+
+    cards.forEach((card) => {
+      card.addEventListener('click', () => this.open(card))
+    })
+
+    const prevBtn = document.querySelector('.modal__project-prev')
+    const nextBtn = document.querySelector('.modal__project-next')
+
+    prevBtn?.addEventListener('click', () => {
+      if (this.imgIndex > 0) this.showImage(this.imgIndex - 1)
+    })
+    nextBtn?.addEventListener('click', () => {
+      if (this.imgIndex < this.images.length - 1)
+        this.showImage(this.imgIndex + 1)
+    })
+
+    // CTA → open callback modal
+    const cta = document.querySelector('.modal__project-cta')
+    cta?.addEventListener('click', (e) => {
+      e.preventDefault()
+      modal.close()
+      setTimeout(() => modal.open('callback'), 420)
+    })
+  },
+
+  open(card) {
+    const { title, category, desc, images } = card.dataset
+
+    // Parse images list
+    this.images = images
+      ? images
+          .split(',')
+          .map((s) => s.trim())
+          .filter(Boolean)
+      : []
+    this.imgIndex = 0
+
+    // Populate text fields
+    const titleEl = document.getElementById('project-modal-title')
+    const serviceEl = document.getElementById('project-modal-service')
+    const descEl = document.getElementById('project-modal-desc')
+    if (titleEl) titleEl.textContent = title || ''
+    if (serviceEl) serviceEl.textContent = category || ''
+    if (descEl) descEl.textContent = desc || ''
+
+    // Show first image
+    this.showImage(0)
+
+    modal.open('project')
+  },
+
+  showImage(index) {
+    this.imgIndex = index
+    const imgEl = document.getElementById('project-modal-img')
+    if (imgEl && this.images[index]) {
+      imgEl.style.opacity = '0'
+      setTimeout(() => {
+        imgEl.src = this.images[index]
+        imgEl.style.opacity = '1'
+      }, 150)
+    }
+
+    // Update nav disabled states
+    const prevBtn = document.querySelector('.modal__project-prev')
+    const nextBtn = document.querySelector('.modal__project-next')
+    prevBtn?.classList.toggle('disabled', index === 0)
+    nextBtn?.classList.toggle('disabled', index === this.images.length - 1)
+  },
+}
+projectModal.init()
+
 // Initialize the fancybox
 const fancyboxTriggers = Array.from(
   document.querySelectorAll('[data-fancybox]'),
