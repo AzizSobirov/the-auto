@@ -217,6 +217,21 @@ if (projectsEl) {
   projectModal.init()
 }
 
+// Pricing
+const pricingEl = document.querySelector('.pricing')
+if (pricingEl) {
+  const items = document.querySelectorAll('.pricing__item')
+
+  items.forEach((item) => {
+    item.addEventListener('click', (e) => {
+      // Don't toggle if clicking the modal button
+      if (e.target.closest('[data-modal]')) return
+
+      item.classList.toggle('active')
+    })
+  })
+}
+
 // Footer
 const currentYear = document.getElementById('current-year')
 if (currentYear) {

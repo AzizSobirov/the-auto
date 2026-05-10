@@ -1,14 +1,353 @@
 ---
-import { Section,H2,H3,P, Image, Icon, Button } from "ui";
+import { Section, H2, H3, H5, P } from 'ui'
+
+const pricingData = [
+  {
+    title: 'Полировка кузова',
+    desc: 'Профессиональное восстановление лакокрасочного покрытия автомобиля. Мы убираем мелкие царапины, потертости и возвращаем кузову заводской блеск с использованием премиальных паст.',
+    prices: [
+      { label: 'КЛАСС А', value: '15 000 ₽' },
+      { label: 'КЛАСС В', value: '18 000 ₽' },
+      { label: 'КЛАСС С', value: '22 000 ₽' },
+      { label: 'КЛАСС Е', value: '25 000 ₽' },
+    ],
+  },
+  {
+    title: 'Керамическое покрытие',
+    desc: 'Нанесение защитного нанокерамического слоя, который создает мощный гидрофобный эффект, защищает от химии, реагентов и ультрафиолета на срок до 2 лет.',
+    prices: [
+      { label: 'КЛАСС А', value: '30 000 ₽' },
+      { label: 'КЛАСС В', value: '35 000 ₽' },
+      { label: 'КЛАСС С', value: '40 000 ₽' },
+      { label: 'КЛАСС Е', value: '45 000 ₽' },
+    ],
+  },
+  {
+    title: 'Химчистка салона',
+    desc: 'Детальная очистка всех поверхностей интерьера: от потолка до пола. Используем гипоаллергенную химию и парогенераторы для удаления даже самых сложных пятен.',
+    prices: [
+      { label: 'КЛАСС А', value: '12 000 ₽' },
+      { label: 'КЛАСС В', value: '14 000 ₽' },
+      { label: 'КЛАСС С', value: '16 000 ₽' },
+      { label: 'КЛАСС Е', value: '20 000 ₽' },
+    ],
+  },
+  {
+    title: 'Оклейка антигравийной пленкой',
+    desc: 'Максимальная защита кузова от сколов, царапин и мелких ДТП. Используем только качественный полиуретан с функцией самовосстановления царапин.',
+    prices: [
+      { label: 'КЛАСС А', value: '150 000 ₽' },
+      { label: 'КЛАСС В', value: '170 000 ₽' },
+      { label: 'КЛАСС С', value: '190 000 ₽' },
+      { label: 'КЛАСС Е', value: '220 000 ₽' },
+    ],
+  },
+  {
+    title: 'Детейлинг мойка',
+    desc: 'Трехфазная безопасная мойка с использованием специализированных составов для кузова, дисков и арок. Идеальный уход за вашим автомобилем.',
+    prices: [
+      { label: 'КЛАСС А', value: '3 500 ₽' },
+      { label: 'КЛАСС В', value: '4 500 ₽' },
+      { label: 'КЛАСС С', value: '5 500 ₽' },
+      { label: 'КЛАСС Е', value: '6 500 ₽' },
+    ],
+  },
+  {
+    title: 'Бронирование лобового стекла',
+    desc: 'Установка прозрачной защитной пленки на лобовое стекло для защиты от сколов и трещин. Пленка обладает отличной прозрачностью и не искажает обзор.',
+    prices: [
+      { label: 'КЛАСС А', value: '18 000 ₽' },
+      { label: 'КЛАСС В', value: '18 000 ₽' },
+      { label: 'КЛАСС С', value: '20 000 ₽' },
+      { label: 'КЛАСС Е', value: '22 000 ₽' },
+    ],
+  },
+]
 ---
 
 <!-- Pricing -->
-<Section name="pricing"> .pricing </Section>
+<Section name="pricing">
+  <div class="pricing__header">
+    <H5>СТОИМОСТЬ УСЛУГ</H5>
+    <H2><strong>ЧЕСТНЫЕ</strong> ЦЕНЫ</H2>
+  </div>
+
+  <div class="pricing__list">
+    {
+      pricingData.map((item) => (
+        <div class="pricing__item">
+          <div class="pricing__item-main">
+            <div class="pricing__item-info">
+              <div class="pricing__item-title">{item.title}</div>
+              <div class="pricing__item-desc">
+                <div>
+                  <P>{item.desc}</P>
+                </div>
+              </div>
+            </div>
+
+            <div class="pricing__item-prices">
+              {item.prices.map((price) => (
+                <div class="pricing__item-price">
+                  <span class="pricing__item-price-label">{price.label}</span>
+                  <span class="pricing__item-price-value">{price.value}</span>
+                </div>
+              ))}
+            </div>
+
+            <button class="pricing__btn" data-modal="callback">
+              <span>ОНЛАЙН ЗАПИСЬ</span>
+              <div class="pricing__btn-arrow">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17.6169 0.999765C17.6169 0.447481 17.1692 -0.000234596 16.6169 -0.000234849L7.61693 -0.000234049C7.06465 -0.000234386 6.61693 0.447481 6.61693 0.999766C6.61693 1.55205 7.06465 1.99977 7.61693 1.99977L15.6169 1.99977L15.6169 9.99977C15.6169 10.552 16.0646 10.9998 16.6169 10.9998C17.1692 10.9998 17.6169 10.5521 17.6169 9.99977L17.6169 0.999765ZM0.707031 16.9097L1.41414 17.6168L17.324 1.70687L16.6169 0.999766L15.9098 0.292659L-7.55191e-05 16.2026L0.707031 16.9097Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </button>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Section>
 
 <style lang="scss" is:global>
-  @use "scss/helpers" as *;
+  @use 'scss/helpers' as *;
 
   .pricing {
     position: relative;
+
+    .container {
+      gap: rem(40);
+
+      @include media('lg') {
+        gap: rem(30);
+      }
+    }
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      gap: rem(10);
+    }
+
+    &__list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: rem(20);
+
+      @include media('sm') {
+        gap: rem(12);
+      }
+    }
+
+    &__item {
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: rem(20);
+      padding: rem(24) rem(32);
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      @include media('lg') {
+        padding: rem(20) rem(24);
+      }
+
+      @include media('sm') {
+        padding: rem(16) rem(20);
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+
+      &.active {
+        border-color: rgba($color: #fff, $alpha: 0.5);
+
+        .pricing__item-desc {
+          grid-template-rows: 1fr;
+          margin-top: rem(20);
+          opacity: 1;
+        }
+      }
+
+      &-main {
+        display: flex;
+        align-items: center;
+        gap: rem(40);
+
+        @include media('lg') {
+          gap: rem(24);
+        }
+
+        @include media('md') {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: rem(20);
+        }
+      }
+
+      &-info {
+        flex: 1;
+      }
+
+      &-title {
+        font-size: 1rem;
+        font-weight: 700;
+        transition: color 0.3s ease;
+        letter-spacing: 2%;
+      }
+
+      &-desc {
+        display: grid;
+        grid-template-rows: 0fr;
+        overflow: hidden;
+        opacity: 0;
+        transition:
+          grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+          margin-top 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        max-width: rem(500);
+
+        & > div {
+          min-height: 0;
+        }
+
+        .text-p {
+          color: rgba(255, 255, 255, 0.6);
+          line-height: 1.5;
+        }
+      }
+
+      &-prices {
+        display: flex;
+        gap: rem(40);
+
+        @include media('lg') {
+          gap: rem(24);
+        }
+
+        @include media('md') {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        @include media('sm') {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: rem(16);
+        }
+      }
+
+      &-price {
+        display: flex;
+        flex-direction: column;
+        gap: rem(4);
+        min-width: rem(100);
+
+        @include media('lg') {
+          min-width: rem(80);
+        }
+
+        @include media('md') {
+          min-width: 0;
+        }
+
+        &-label {
+          font-size: rem(12);
+          text-transform: uppercase;
+          letter-spacing: 2%;
+        }
+
+        &-value {
+          font-size: rem(20);
+          font-weight: 700;
+          color: var(--primary);
+          white-space: nowrap;
+          letter-spacing: 2%;
+        }
+      }
+    }
+
+    &__btn {
+      display: flex;
+      align-items: center;
+      gap: rem(10);
+      width: fit-content;
+      cursor: pointer;
+      margin-left: auto;
+
+      @include media('md') {
+        margin-left: 0;
+        margin-top: rem(10);
+      }
+
+      span {
+        display: none;
+        height: rem(35);
+        width: rem(215);
+        background: #c36b3d;
+        border-radius: rem(10);
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: rem(14);
+        letter-spacing: 8%;
+        transition: background 0.3s ease;
+
+        @include media('md') {
+          display: flex;
+        }
+
+        @include media('sm') {
+          width: rem(180);
+          font-size: rem(12);
+        }
+      }
+
+      &-arrow {
+        width: rem(35);
+        height: rem(35);
+        border: 1px solid #c36b3d;
+        border-radius: rem(10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #c36b3d;
+        transition: all 0.3s ease;
+
+        svg {
+          width: rem(18);
+          height: rem(18);
+          transition: transform 0.3s ease;
+        }
+      }
+
+      &:hover {
+        span {
+          background: darken(#c36b3d, 10%);
+        }
+
+        .pricing__btn-arrow {
+          background: #c36b3d;
+          color: #fff;
+
+          svg {
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
   }
 </style>
