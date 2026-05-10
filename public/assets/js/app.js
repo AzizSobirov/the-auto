@@ -259,6 +259,11 @@ if (fancyboxTriggers) {
   fancyboxInstances.forEach((name) => {
     Fancybox.bind(`[data-fancybox="${name}"]`, {
       Images: { Panzoom: { maxScale: 3 } },
+      Carousel: {
+        Html: {
+          autosize: true,
+        },
+      },
     })
   })
 }

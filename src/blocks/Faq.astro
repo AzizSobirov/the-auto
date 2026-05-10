@@ -1,0 +1,103 @@
+---
+import { Section, H2, H5, H3, P, Image, Button } from 'ui'
+import { Icon } from 'astro-icon/components'
+---
+
+<!-- Faq -->
+<Section name="faq">
+  <div class="faq__header">
+    <H5>ВОПРОС ОТВЕТ</H5>
+    <H2>ОТВЕЧАЕМ НА <strong>ВАШИ ВОПРОСЫ</strong></H2>
+  </div>
+
+  <div class="faq__list">
+    {
+      Array.from({ length: 6 }).map((_, i) => (
+        <div
+          class="faq__item"
+          data-fancybox="faq"
+          data-src="https://rutube.ru/play/embed/00caf4b2a364098fc418afc49537f5c2/"
+          data-type="iframe"
+          aria-label="play video"
+          role="button"
+        >
+          <div class="faq__item-title">сколько стоит оклейка моей машины?</div>
+          <div class="faq__item-play">
+            <Icon name="material-symbols:play-circle-outline-rounded" />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Section>
+
+<style lang="scss" is:global>
+  @use 'scss/helpers' as *;
+
+  .faq {
+    position: relative;
+
+    .container {
+      gap: rem(40);
+
+      @include media('lg') {
+        gap: rem(30);
+      }
+    }
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      gap: rem(10);
+    }
+
+    &__list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: rem(25);
+
+      @include media('sm') {
+        gap: rem(15);
+      }
+    }
+
+    &__item {
+      padding: rem(20) rem(25);
+      width: 100%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba($color: #fff, $alpha: 0.15);
+      border-radius: rem(20);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: rem(20);
+      cursor: pointer;
+
+      @include media('sm') {
+        padding: rem(15) rem(15);
+        gap: rem(15);
+      }
+
+      &-title {
+        font-size: clamp(1.125rem, 0.9872rem + 0.6122vw, 1.5rem);
+        font-weight: 400;
+        font-family: var(--font-secondary);
+        text-transform: uppercase;
+      }
+
+      &-play {
+        width: rem(40);
+        height: rem(40);
+        color: var(--primary);
+        flex-shrink: 0;
+
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+</style>

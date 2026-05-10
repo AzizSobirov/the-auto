@@ -63,4 +63,12 @@ section {
   }
 }
 
-// @include show('.projects', true, true);
+.fancybox__slide.has-iframe .fancybox__content {
+  padding: 0 !important;
+
+  @include media('sm') {
+    max-height: rem(240);
+  }
+}
+
+// @include show('.faq', true, true);
