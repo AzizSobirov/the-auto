@@ -312,8 +312,9 @@ phoneMasks.forEach((input) => {
 })
 
 // form
-function successSend() {
+function successSend(form) {
   modal.open('success')
+  if (form) form.reset()
 
   setTimeout(() => {
     modal.close()
@@ -324,6 +325,6 @@ const forms = document.querySelectorAll('.the-form')
 forms.forEach((form) => {
   form.addEventListener('submit', (e) => {
     e.preventDefault()
-    successSend()
+    successSend(form)
   })
 })
