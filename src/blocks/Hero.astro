@@ -5,7 +5,11 @@ import { Section, H2, H3, P, Image, BgImg, Icon, Button } from 'ui'
 <!-- Hero -->
 <Section name="hero">
   <Fragment #header-content>
-    <BgImg src="/hero/bg.png" />
+    <div class="bg-img">
+      <video autoplay loop muted playsinline>
+        <source src="/assets/videos/autodetail.mp4" type="video/mp4" />
+      </video>
+    </div>
   </Fragment>
 
   <div class="wrapper group">
@@ -27,6 +31,13 @@ import { Section, H2, H3, P, Image, BgImg, Icon, Button } from 'ui'
       @include media('sm') {
         padding-top: rem(200);
       }
+    }
+
+    .bg-img video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
     &__subtitle {
