@@ -1,14 +1,201 @@
 ---
-import { Section,H2,H3,P, Image, Icon, Button } from "ui";
+import { Section, H5, H2, P, Image, Icon, Button } from 'ui'
 ---
 
 <!-- Service -->
-<Section name="service"> .service </Section>
+<Section name="service">
+  <div class="service__header">
+    <H5><a href="/">ГЛАВНАЯ</a> <span>-</span> УСЛУГА</H5>
+    <H2>ПОЛИРОВКА КУЗОВА</H2>
+  </div>
+
+  <div class="service__card">
+    <div class="service__card-img">
+      <Image src="service/1.png" />
+    </div>
+    <div class="service__card-content">
+      <P class="service__card-desc">
+        Полировка кузова в THE AUTO — это быстрый способ вернуть автомобилю
+        глубокий блеск, насыщенность цвета и эффект ухоженного премиального
+        покрытия. Мы аккуратно убираем мелкие царапины, следы мойки, помутнения
+        и придаём лакокрасочному покрытию выразительный глянец, чтобы машина
+        выглядела заметно свежее, дороже и эффектнее.
+      </P>
+
+      <div class="service__card-info">
+        <div class="service__card-time">
+          <span class="text-p">Время выполнения</span>
+          <div class="group-row">
+            <Icon src="clock.svg" />
+            <span>ОТ 1 ДНЯ</span>
+          </div>
+        </div>
+        <div class="service__card-time">
+          <span class="text-p">Стоимость</span>
+          <div class="group-row">
+            <Icon src="rub.svg" />
+            <span>от 20 000 ₽</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="contacts__btn" data-modal="callback">
+        <span>ОНЛАЙН ЗАПИСЬ</span>
+        <div class="contacts__btn-arrow">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.6169 0.999765C17.6169 0.447481 17.1692 -0.000234596 16.6169 -0.000234849L7.61693 -0.000234049C7.06465 -0.000234386 6.61693 0.447481 6.61693 0.999766C6.61693 1.55205 7.06465 1.99977 7.61693 1.99977L15.6169 1.99977L15.6169 9.99977C15.6169 10.552 16.0646 10.9998 16.6169 10.9998C17.1692 10.9998 17.6169 10.5521 17.6169 9.99977L17.6169 0.999765ZM0.707031 16.9097L1.41414 17.6168L17.324 1.70687L16.6169 0.999766L15.9098 0.292659L-7.55191e-05 16.2026L0.707031 16.9097Z"
+              fill="currentColor"></path>
+          </svg>
+        </div>
+      </button>
+    </div>
+  </div>
+</Section>
 
 <style lang="scss" is:global>
-  @use "scss/helpers" as *;
+  @use 'scss/helpers' as *;
 
   .service {
     position: relative;
+
+    .container {
+      gap: rem(40);
+
+      @include media('lg') {
+        gap: rem(30);
+      }
+    }
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      gap: rem(10);
+
+      .text-h5 {
+        strong,
+        b,
+        a {
+          color: var(--primary);
+          font-weight: 700;
+        }
+
+        span {
+          margin: 0 rem(5);
+        }
+      }
+    }
+
+    &__card {
+      position: relative;
+      min-height: rem(425);
+      width: 100%;
+      border-radius: rem(35);
+      overflow: hidden;
+
+      @include media('sm') {
+        border-radius: rem(20);
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        left: 0;
+        transform: translate(-25%, -50%);
+        width: rem(530);
+        height: rem(530);
+        background: #0f1e0f;
+        border-radius: 50%;
+        filter: blur(50px);
+        pointer-events: none;
+
+        @include media('sm') {
+          width: rem(400);
+          height: rem(400);
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      &-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &-content {
+        position: relative;
+        z-index: 2;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba($color: #000000, $alpha: 0.2);
+        padding: rem(40);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: rem(30);
+
+        @include media('sm') {
+          padding: rem(20);
+        }
+      }
+
+      &-desc {
+        max-width: rem(400);
+        letter-spacing: 2%;
+      }
+
+      &-info {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: rem(40);
+
+        @include media('xs') {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: rem(20);
+        }
+      }
+
+      &-time,
+      &-price {
+        display: flex;
+        flex-direction: column;
+        gap: rem(10);
+
+        .group-row {
+          display: flex;
+          align-items: center;
+          gap: rem(12);
+          --icon-size: #{rem(28)};
+
+          span {
+            font-size: rem(20);
+            font-weight: 500;
+          }
+        }
+      }
+    }
   }
 </style>

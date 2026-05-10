@@ -1,6 +1,5 @@
 ---
-import { Section, H2, H5, H3, P, Image, Button } from 'ui'
-import { Icon } from 'astro-icon/components'
+import { Section, H2, H5, H3, P, Icon, Image, Button } from 'ui'
 ---
 
 <!-- Faq -->
@@ -23,7 +22,7 @@ import { Icon } from 'astro-icon/components'
         >
           <div class="faq__item-title">сколько стоит оклейка моей машины?</div>
           <div class="faq__item-play">
-            <Icon name="material-symbols:play-circle-outline-rounded" />
+            <Image src="icons/play.svg" />
           </div>
         </div>
       ))
@@ -93,7 +92,8 @@ import { Icon } from 'astro-icon/components'
         color: var(--primary);
         flex-shrink: 0;
 
-        svg {
+        svg,
+        img {
           width: 100%;
           height: 100%;
         }
