@@ -1,14 +1,98 @@
 ---
-import { Section,H2,H3,P, Image, Icon, Button } from "ui";
+import { Section, H2, H3, H5, P, Image, Icon, Button } from 'ui'
 ---
 
 <!-- Included -->
-<Section name="included"> .included </Section>
+<Section name="included">
+  <div class="pricing__header">
+    <H5>СТОИМОСТЬ УСЛУГ</H5>
+    <H2><strong>ЧЕСТНЫЕ</strong> ЦЕНЫ</H2>
+  </div>
+
+  <div class="included__list">
+    {
+      [...Array(8)].map((_, i) => (
+        <div class="included__item">
+          <div class="included__item-img">
+            <Image src={`numbers/${i + 1}.png`} />
+          </div>
+          <P class="included__item-title">Тщательная мойка кузова</P>
+        </div>
+      ))
+    }
+  </div>
+</Section>
 
 <style lang="scss" is:global>
-  @use "scss/helpers" as *;
+  @use 'scss/helpers' as *;
 
   .included {
     position: relative;
+
+    .container {
+      gap: rem(40);
+
+      @include media('lg') {
+        gap: rem(30);
+      }
+    }
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      gap: rem(10);
+    }
+
+    &__list {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: rem(30) rem(20);
+
+      @include media('lg') {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include media('md') {
+        grid-template-columns: 1fr;
+        gap: rem(15);
+      }
+    }
+
+    &__item {
+      position: relative;
+      padding: rem(5);
+      padding-left: rem(110);
+      min-height: rem(90);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: rem(20);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: rem(20);
+      overflow: hidden;
+
+      @include media('xs') {
+        min-height: rem(80);
+        padding-left: rem(80);
+      }
+
+      &-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        pointer-events: none;
+
+        @include media('xs') {
+          width: rem(80);
+          align-items: center;
+        }
+      }
+    }
   }
 </style>
